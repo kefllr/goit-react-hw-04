@@ -10,9 +10,14 @@ const FORM_INITIAL_VALUES = {
 
   
 const SearchBar = ({onSearch}) =>{
-    const handleSubmit = (values)=>{
-       onSearch(values.search)
-    }
+    const handleSubmit = (values, { setSubmitting }) => {
+      if (!values.search.trim()) {
+          notify();
+          setSubmitting(false);
+          return;
+      }
+      onSearch(values.search);
+  }
     return(
         <header>
       <Formik initialValues={FORM_INITIAL_VALUES} onSubmit={handleSubmit}>

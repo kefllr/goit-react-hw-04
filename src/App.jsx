@@ -11,7 +11,7 @@ import { pagination, ACCESS_KEY, initModImg } from './api';
 import ImageModal from './components/ImageModal/ImageModal';
 
 function App() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const [images, setImages] = useState([]);
 
   const [pageNumber, setPageNumber] = useState(1);
@@ -41,7 +41,9 @@ function App() {
   };
 
   const onSearch = (search) => {
-    setQuery(search);
+    if (search.trim() !== '') { 
+      setQuery(search.trim());
+    }
   };
 
   useEffect(() => {
@@ -56,8 +58,8 @@ function App() {
             client_id: ACCESS_KEY,
           }
         });
-        setImages(response.data.results); // Відповідь містить поле "results" зі списком зображень
-        setMaxPage(Math.ceil(response.data.total / pagination)); // Обчислення максимальної кількості сторінок
+        setImages(response.data.results); 
+        setMaxPage(Math.ceil(response.data.total / pagination)); 
       } catch (error) {
         setIsError(true);
       } finally {
@@ -68,7 +70,7 @@ function App() {
   }, [query, pageNumber]);
 
   const loadMore = () => {
-    setPageNumber((prev) => prev + 1); // Збільшення номеру сторінки
+    setPageNumber((prev) => prev + 1);  
   };
 
   return (
