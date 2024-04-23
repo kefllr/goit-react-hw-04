@@ -47,6 +47,7 @@ function App() {
   };
 
   useEffect(() => {
+    if(!query)return
     const fetchImages = async () => {
       try {
         setLoading(true);
@@ -58,7 +59,11 @@ function App() {
             client_id: ACCESS_KEY,
           }
         });
-        setImages(response.data.results); 
+        if(pageNumber === 1){
+          setImages(response.data.results);
+        }else{
+          setImages(prevImages => [...prevImages, ...response.data.results]);
+        } 
         setMaxPage(Math.ceil(response.data.total / pagination)); 
       } catch (error) {
         setIsError(true);
