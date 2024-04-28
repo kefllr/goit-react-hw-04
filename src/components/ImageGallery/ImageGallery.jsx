@@ -6,7 +6,7 @@
 // 		</div>
 // 	</li>
 // </ul> */}
-import ImageCard from "./ImageCard/ImageCard";
+import ImageCard from "../ImageCard/ImageCard";
 import { forwardRef } from "react";
 import css from "./ImageGallery.module.css";
 

@@ -43,6 +43,8 @@ function App() {
   const onSearch = (search) => {
     if (search.trim() !== '') { 
       setQuery(search.trim());
+      setPageNumber(1);
+      setImages([]); 
     }
   };
 
